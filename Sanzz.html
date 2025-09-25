@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ＳＡＮＺＺ　ＳＴＯＲＥ - Sanzz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0a0e17;
+            --secondary-color: #131a2d;
+            --accent-color: #00a2ff;
+            --text-color: #e0e0e0;
+            --card-bg: #1a2238;
+            --button-bg: #2563eb;
+            --button-hover: #1d4ed8;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            min-height: 100vh;
+            background-attachment: fixed;
+            padding-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 25px rgba(0, 162, 255, 0.5);
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 1.5rem 0;
+            background: linear-gradient(90deg, #4fc3f7, #29b6f6, #03a9f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            background: var(--button-bg);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(90deg, #0d9488, #0f766e);
+        }
+
+        .btn-accent {
+            background: linear-gradient(90deg, #d946ef, #c026d3);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 2rem;
+            color: #e0f7fa;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #4fc3f7, #03a9f4);
+            border-radius: 3px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #bb86fc;
+        }
+
+        .product-description {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .product-footer {
+            margin-top: auto;
+        }
+
+        .partner-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .partner-content {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-family: monospace;
+            white-space: pre-line;
+            line-height: 1.6;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 1rem;
+            opacity: 0.8;
+            user-select: none;
+            pointer-events: none;
+            z-index: -1;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .main-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://files.catbox.moe/d03pt2.jpg" alt="Logo Sanzz" class="logo">
+            <h1>𝙎𝘼𝙉𝙕𝙕 𝙎𝙏𝙊𝙍𝙀</h1>
+            
+            <div class="main-menu">
+                <a href="#products" class="btn btn-primary">
+                    <i class="fas fa-box"></i> Cek Produk
+                </a>
+                <button id="playAudio" class="btn btn-secondary">
+                    <i class="fas fa-music"></i> Play Audio
+                </button>
+                <a href="https://t.me/marketsanzz" target="_blank" class="btn btn-accent">
+                    <i class="fas fa-star"></i> Testimoni Sanz
+                </a>
+                <a href="https://t.me/sanzzexe" target="_blank" class="btn">
+                    <i class="fas fa-user"></i> Kontak Owner
+                </a>
+            </div>
+        </header>
+        
+        <section id="products">
+            <h2 class="section-title">Produk Kami</h2>
+            
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://files.catbox.moe/xnko23.jpg" alt="Panel 1GB - Unlimited" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Panel 1GB - Unlimited</h3>
+                        <p class="product-description">Panel Pterodactyl dengan kapasitas 1GB hingga unlimited. Cocok untuk semua kebutuhan hosting game dan aplikasi Anda.</p>
+                        <div class="product-footer">
+                            <a href="https://t.me/sanzzexe" target="_blank" class="btn">
+                                <i class="fas fa-shopping-cart"></i> Beli
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://files.catbox.moe/xnko23.jpg" alt="Admin Panel" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Admin Panel</h3>
+                        <p class="product-description">Panel admin Pterodactyl dengan akses penuh untuk mengelola semua aspek server dan pengguna.</p>
+                        <div class="product-footer">
+                            <a href="https://t.me/sanzzexe" target="_blank" class="btn">
+                                <i class="fas fa-shopping-cart"></i> Beli
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://files.catbox.moe/xnko23.jpg" alt="PT Panel" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">PT Panel</h3>
+                        <p class="product-description">Panel PT dengan fitur lengkap untuk kebutuhan khusus dan manajemen server yang efisien.</p>
+                        <div class="product-footer">
+                            <a href="https://t.me/sanzzexe" target="_blank" class="btn">
+                                <i class="fas fa-shopping-cart"></i> Beli
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://files.catbox.moe/xnko23.jpg" alt="Owner Panel" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Owner Panel</h3>
+                        <p class="product-description">Panel khusus owner dengan akses super admin dan kontrol penuh atas seluruh sistem.</p>
+                        <div class="product-footer">
+                            <a href="https://t.me/sanzzexe" target="_blank" class="btn">
+                                <i class="fas fa-shopping-cart"></i> Beli
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="partner">
+            <h2 class="section-title">Partner Program</h2>
+            
+            <div class="partner-section">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <a href="#" id="partnerBtn" class="btn btn-accent">
+                        <i class="fas fa-handshake"></i> Partner By Sanzz
+                    </a>
+                </div>
+                
+                <div id="partnerContent" class="partner-content" style="display: none;">
+                    𝗚𝗪 SANZZ 𝗟𝗔𝗚𝗜 𝗢𝗣𝗘𝗡 𝗣𝗔𝗧𝗡𝗘𝗥 𝗕𝗔𝗦𝗜𝗖 
+
+━━━━━━━━━━━━━〣
+
+</> PЯICΣ : 15K  👑
+OPΣN ÐP MINIMAL 0K!! 👑
+
+━━━━━━━━━━━━━〣
+
+🔥BΣNΣTIF/KΣUNTUNGAN:
+🔱 ANTI GA ÐI UЯUS/BANYAK ÐЯAMA MAIN BL BL AN
+🔱 LU GW PЯOMOSIIN ÐI ALL CH ÐAN GB GW
+🔱 SΣЯING ÐAPΣT ÐOЯONGAN ÐAЯI GW
+🔱 GW BANTU NAIKIN NAMA LU ASAL GA NGΣЯIP
+🔱 GΣT AÐMIN GЯOUP BANÐ+UNBANÐ+ ALL PT
+🔱 GΣT SC SCOЯPIUS CЯASΗΣЯ
+🔱 GΣT BASΣ SC BUG WHATSAPP X TΣLΣ
+🔱 GΣT ЯΣSSΣLΣЯ PANΣL
+🔱 GΣT BASΣ WHATSAPP X TΣLΣGЯAM
+🔱 GΣT BASΣ BUG VIA WΣB
+🔱 GΣT PATNΣЯ FUNCTION PUBLIC
+🔱 GΣT ALL SC VVIP BΣЯBAYAЯ (YTTA)
+🔱 GΣT SCЯIPT BOT WHATSAPP ÐAN TΣLΣGЯAM
+🔱 GΣT BASΣ/SCЯIPT ΣNC ÐAN NO ΣNC
+🔱 GΣT SC PUSH, CPANΣL, BUG, MÐ, ÐÐOS, JASHΣЯTΣLΣ, ÐB ÐLL
+🔱 GΣT MUЯSUNTIK SOSMΣÐ PЯIVATΣ
+🔱 GΣT MUЯLOGO PЯIVATΣ
+🔱 GΣT MUЯNOKOS PЯIVATΣ
+🔱 GΣT MUЯBANÐ INSTAGЯAM PЯIVATΣ
+🔱 GΣT MUЯЯΣSΣT OTP WHATSAPP
+🔱 GΣT MUЯSAÐAP GALΣЯI ÐAN HACK KAMΣЯA
+🔱 GΣT MUЯUP PAYMΣNT
+🔱 GΣT TOOLS/HTML
+🔱 GΣT MUЯWALWЯΣ/ЯANSOMWAЯΣ
+🔱 GΣT MUЯЯΣNAMΣ APK CΣK BANÐ/SCЯIPT
+🔱 GΣT MUЯIÐ BANÐ WHATSAPP
+🔱 GΣT MUЯIÐ UNBANÐ WHATSAPP
+🔱 GΣT MUЯÐÐOS
+🔱 GΣT MUЯSCЯIPT
+🔱 GΣT BASΣ APK BUG WHATSAPP
+🔱 GΣT WΣB BUG WHATSAPP
+🔱 GΣT 900 FOLÐΣЯ ЯOOM PUBLIC BUAT PЯOMOSI
+🔱 GΣT WA ÐΣLTA AMA WA BΣTA JUGA KALO LU MAU
+🔱 ALL FULL BAHAN ÐAN TUTOЯIAL KALO GAPAHAM BISA TANYA GW MASIH BANYAK LAGI COK INTINYA LU GABAKAL NYΣSΣL ЯUGI
+                </div>
+                
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="https://t.me/sanzzexe" target="_blank" class="btn">
+                        <i class="fas fa-crown"></i> Buy Partner
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Sanzz Panel Store. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <audio id="audioPlayer" style="display: none;">
+        <source src="https://files.catbox.moe/gm6sza.mp4" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Fungsi untuk membuat efek salju
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+        
+        // Membuat efek salju setiap 100ms
+        setInterval(createSnowflake, 100);
+        
+        // Tombol play audio
+        document.getElementById('playAudio').addEventListener('click', function() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                this.innerHTML = '<i class="fas fa-pause"></i> Pause Audio';
+            } else {
+                audioPlayer.pause();
+                this.innerHTML = '<i class="fas fa-music"></i> Play Audio';
+            }
+        });
+        
+        // Tombol partner
+        document.getElementById('partnerBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const partnerContent = document.getElementById('partnerContent');
+            if (partnerContent.style.display === 'none') {
+                partnerContent.style.display = 'block';
+                this.innerHTML = '<i class="fas fa-times"></i> Tutup Partner Info';
+            } else {
+                partnerContent.style.display = 'none';
+                this.innerHTML = '<i class="fas fa-handshake"></i> Partner By Sanzz';
+            }
+        });
+        
+        // Smooth scroll untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
